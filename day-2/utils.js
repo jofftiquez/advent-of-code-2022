@@ -54,7 +54,7 @@ const expectedOutcome = (combination) => {
   }
 }
 
-const roll = (combination) => {
+const play = (combination) => {
   const [opponent, me] = combination.split(' ');
 
   // Get score based on 
@@ -87,4 +87,4 @@ const roll = (combination) => {
 }
 
 exports.expectedOutcome = expectedOutcome;
-exports.roll = roll;
+exports.play = play;

@@ -1,17 +1,7 @@
-const fs = require('fs');
+const start = require('../utils').fileReader;
 const solve = require('./core').solve;
 
-// Use fs to read the file
-const read = (file, callback) => {
-  fs.readFile(file, 'utf8', (err, data) => {
-    if (err) {
-      console.log(err);
-    }
-    callback(data);
-  });
-}
-
-read('day-1/input.txt', (data) => {
+start('day-1/input.txt', (data) => {
   // Split the large string using \n to get the proper grouping
   const arr = data.split('\n');
 

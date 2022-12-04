@@ -1,22 +1,12 @@
-const fs = require('fs');
-const roll = require('./utils').roll;
+const start = require('../utils').fileReader;
+const play = require('./utils').play;
 
-// Use fs to read the file
-const read = (file, callback) => {
-  fs.readFile(file, 'utf8', (err, data) => {
-    if (err) {
-      console.log(err);
-    }
-    callback(data);
-  });
-}
-
-read('day-2/input.txt', (data) => {
+start('day-2/input.txt', (data) => {
   // Get the array version of the input
   const arr = data.split('\n');
 
   // Compute the score
-  const scoresArr = arr.map(item => roll(item));
+  const scoresArr = arr.map(item => play(item));
   console.warn('scoresArr', scoresArr);
 
   // Get sum

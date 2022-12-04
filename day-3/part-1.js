@@ -1,17 +1,7 @@
-const fs = require('fs');
+const start = require('../utils').fileReader;
 const priorityMap = require('./priority-map.json');
 
-// Use fs to read the file
-const read = (file, callback) => {
-  fs.readFile(file, 'utf8', (err, data) => {
-    if (err) {
-      console.log(err);
-    }
-    callback(data);
-  });
-}
-
-read('day-3/input.txt', (data) => {
+start('day-3/input.txt', (data) => {
   // Get the array version of the input
   const arr = data.split('\n');
 
@@ -77,7 +67,7 @@ read('day-3/input.txt', (data) => {
     // Get the priorities for each uniqueIntersecting items
     // See mapping in ./priority-map.json
     const uniqueIntersectingPriorities = uniqueIntersecting.map(item => priorityMap[item]);
-    // Summize the uniqueIntersectingPriorities
+    // Get the summation of  uniqueIntersectingPriorities
     const uniqueIntersectingPrioritiesSum = uniqueIntersectingPriorities.reduce((a, b) => a + b);
 
     // Return an easier to read mapped object
@@ -94,7 +84,7 @@ read('day-3/input.txt', (data) => {
   const ruckSacksIntersectingItemsPrioritiesSums = ruckSacks.map(item => item.uniqueIntersectingPrioritiesSum);
   console.warn('ruckSacks', ruckSacksIntersectingItemsPrioritiesSums);
 
-  // Summize the ruckSacksIntersectingItemsPrioritiesSums to get the answer
+  // Get the summation ruckSacksIntersectingItemsPrioritiesSums to get the answer
   const answer = ruckSacksIntersectingItemsPrioritiesSums.reduce((a, b) => a + b);
 
   // Answer should be 7701

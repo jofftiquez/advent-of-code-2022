@@ -1,23 +1,6 @@
-const fs = require('fs');
+const start = require('../utils').fileReader;
+const groupArrayByN = require('../utils').groupArrayByN;
 const priorityMap = require('./priority-map.json');
-
-// Use fs to read the file
-const read = (file, callback) => {
-  fs.readFile(file, 'utf8', (err, data) => {
-    if (err) {
-      console.log(err);
-    }
-    callback(data);
-  });
-}
-
-const groupByN = (n, array) => {
-  let result = [];
-  for (let i = 0; i < array.length; i += n) {
-    result.push(array.slice(i, i + n));
-  }
-  return result;
-};
 
 const computeRucksacks = (arr) => {
   // Convert all ruckSack items to array
@@ -40,12 +23,12 @@ const computeRucksacks = (arr) => {
   return badge;
 }
 
-read('day-3/input.txt', (data) => {
+start('day-3/input.txt', (data) => {
   // Get the array version of the input
   const arr = data.split('\n');
 
   // Group the array by 3
-  const arrGrouped = groupByN(3, arr);
+  const arrGrouped = groupArrayByN(3, arr);
   
   // Get all the elf badges
   const arrGroupedComputed = arrGrouped.map(arr => computeRucksacks(arr));
@@ -53,7 +36,7 @@ read('day-3/input.txt', (data) => {
   // Assign priority scode for each badge
   const arrGroupedComputedPriorities = arrGroupedComputed.map(item => priorityMap[item]);
   
-  // Summize the prioties array
+  // Get the summation of the priorities array
   // Answer should be 2644
   const answer = arrGroupedComputedPriorities.reduce((a, b) => a + b);
   console.warn('answer', answer);
